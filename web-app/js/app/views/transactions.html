@@ -1,0 +1,24 @@
+<div class="container">
+    <div class="row">
+        <div class="col-lg-4">
+            <form role="form" ng-submit="login();" novalidate="novalidate" name="loginForm">
+                <div class="form-group">
+                    <label for="login" class="col-sm-3 control-label">Login</label>
+                    <input type="text" name="username" class="form-control" id="login" placeholder="Login Username" ng-required="true" ng-model="username">
+                    <p class="has-error" ng-show="loginForm.username.$invalid && !loginForm.username.$pristine" class="help-block">You name is required.</p>
+                </div>
+                <div class="form-group">
+                    <label for="password" class="col-sm-3 control-label">Password</label>
+                    <input name="password" type="password" class="form-control" id="password" placeholder="Password" ng-minlength="3" ng-maxlength="8" ng-model="password" />
+                    <span ng-show="loginForm.password.$error.maxlength" class="help-block">Password is too long.</span>
+
+                    <p class="text-danger" ng-show="loginForm.password.$error.minlength" class="help-block">Password is too short.</p>
+
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-primary btn-lg" type="submit" ng-disabled="loginForm.$invalid">Sign In</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

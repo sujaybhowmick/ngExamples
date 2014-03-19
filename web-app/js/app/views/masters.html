@@ -1,0 +1,15 @@
+<div class="container">
+    <ul class="nav nav-pills nav-divider">
+        <li ng-class="{active: $state.includes('masters.resource')}">
+            <a ui-sref=".resource">Resource</a>
+        </li>
+        <li ng-class="{active: $state.includes('masters.tab2')}">
+            <a ui-sref=".tab2">Tab 2</a>
+        </li>
+    </ul>
+
+    <div class="tab-content">
+       <div ui-view></div>
+    </div>
+</div>
+

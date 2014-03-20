@@ -26,27 +26,28 @@ directives.directive('appErrorMessages', function(){
     }
 });
 
-directives.directive('appMessages', function(){
+directives.directive('appMessages', function($compile){
     var fnLink = function(scope, element, attributes){
         scope.$on('success', function(event, args){
-            var template =  '<div class="alert alert-success alert-dismissable">' +
+            var template =  angular.element('<div class="alert alert-success alert-dismissable">' +
                 '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><strong>' +
-                args.message + '</strong></div>'
-            element.delay(3000).fadeOut('slow', function() { $(this).remove(); });
-            element.html(template);
+                args.message + '</strong></div>');
+            template.insertAfter(element);
+            $compile(template)(scope).delay(3000).fadeOut('slow', function() { $(this).remove(); });
         });
 
         scope.$on('error', function(event, args){
-            var template =  '<div class="alert alert-warning alert-dismissable">' +
+            var template =  angular.element('<div class="alert alert-warning alert-dismissable">' +
                 '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><strong>' +
-                args.message + '</strong></div>'
-            element.html(template);
+                args.message + '</strong></div>');
+            template.insertAfter(element);
+            $compile(template)(scope);
         });
 
     };
     return {
         restrict: 'A',
         link: fnLink,
-        replace: true
+        replace: false
     }
 });
